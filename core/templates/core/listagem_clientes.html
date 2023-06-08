@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+list_cli
+{% endblock %}
+
+{% block main %}
+<h3>Listagem de clientes</h3> <br>
+
+{% if messages %}
+    {% for mensagem in messages %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ mensagem }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<ul class="list-group">
+    {% for i in dados %}
+
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col">
+                Nome: {% if i.nome %} {{ i.nome }} {% endif %} <br>
+                Endereço: {% if i.endereco %} {{ i.endereco }} {% endif %} <br>
+                Complemento: {% if i.complemento %} {{ i.complemento }} {% endif %} <br>
+                Bairro: {% if i.bairro %} {{ i.bairro }} {% endif %} <br>
+                Cidade: {% if i.cidade %} {{ i.cidade }} {% endif %} <br>
+                Email: {% if i.email %} {{ i.email }} {% endif %} <br>
+                Fone: {% if i.fone %} {{ i.fone }} {% endif %} <br>
+
+            </div>
+
+            <div class="col" align="right" >
+                {% if i.foto %}
+                <img src={{ i.foto.url }} width="400"> <br>
+                {% else %}
+                <img src="{% static 'perfil_generico.png'%}" width="400"> <br>
+                {% endif %}
+
+                <a href="{% url 'url_atualiza_cliente' i.id %}">Editar</a> &nbsp;
+                <a href="{% url 'url_exclui_cliente' i.id %}">Excluir</a>
+                <br>
+            </div>
+        </div>
+    </li>
+
+    {% endfor %}
+</ul>
+
+
+<button class="mt-4" onclick="window.location.href='/'">home</button>
+{% endblock %}

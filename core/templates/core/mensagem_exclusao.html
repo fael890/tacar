@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  aviso!
+{% endblock %}
+
+{% block main %}
+  <p> {{ txt_tipo }} {{ txt_msg }} excluído com sucesso!</p>
+  <button type="button" onclick="window.location.href='{{ txt_url }}'">ok</button>
+{% endblock %}

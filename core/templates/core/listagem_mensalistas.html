@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+list_mes
+{% endblock %}
+
+{% block main %}
+<h3>Listagem de mensalistas</h3> <br>
+
+<ul class="list-group">
+    {% for i in dados %}
+    <li class="list-group-item">
+        Observações: {% if i.observacoes %} {{ i.observacoes }} {% endif %} <br>
+
+        <a href="{% url 'url_atualiza_mensalista' i.id %}">Editar</a>
+        <a href="{% url 'url_exclui_mensalista' i.id %}">Excluir</a>
+        <br>
+    </li>
+    {% endfor %}
+</ul>
+<button class="mt-4" onclick="window.location.href='/'">home</button>
+
+{% endblock %}

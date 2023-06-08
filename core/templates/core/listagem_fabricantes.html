@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+list_fab
+{% endblock %}
+
+{% block main %}
+<h3>Listagem de fabricantes</h3> <br>
+
+<ul class="list-group">
+    {% for i in dados %}
+    <li class="list-group-item">
+        Nome: {% if i.nome %} {{ i.nome }} {% endif %} <br>
+        Url: {% if i.url %} {{ i.url }} {% endif %} <br>
+        {% if i.logo %}
+        <img src={{ i.logo.url }} width="400"> <br>
+        {% else %}
+        <img src="{% static 'logo_generica.png' %}" width="400"> <br>
+        {% endif %}
+        <a href="{% url 'url_exclui_fabricante' i.id %}">Excluir</a>
+        <br>
+    </li>
+    {% endfor %}
+</ul>
+
+<button class="mt-4" onclick="window.location.href='/'">home</button>
+{% endblock %}

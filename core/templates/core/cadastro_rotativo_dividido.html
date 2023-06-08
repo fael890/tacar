@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{%  load crispy_forms_tags %}
+
+{% block title %}
+{{ txt_title }}
+{% endblock %}
+
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
+
+{% block main %}
+<p>{{txt_descricao}} </p>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        {% csrf_token %}
+        <div class="col-12 col-sm-12 col-md-6">
+            {{ form.data_hora_entrada | as_crispy_field }}
+            {{ form.id_veiculo | as_crispy_field }}
+            {{ form.id_tabela | as_crispy_field }}
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            {{ form.data_hora_saida | as_crispy_field }}
+            {{ form.total | as_crispy_field }}
+            {{ form.pago | as_crispy_field }}
+            {{ form.observacoes | as_crispy_field }}
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-12" align="center">
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <button class="btn btn-warning" onclick="window.location.href='/'">Cancelar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
